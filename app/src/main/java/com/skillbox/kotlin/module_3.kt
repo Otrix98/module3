@@ -1,5 +1,9 @@
 package com.skillbox.kotlin
 
+import androidx.core.graphics.component1
+import androidx.core.util.rangeTo
+import java.security.Key
+
 fun main () {
 
     print("Введите число: ")
@@ -27,12 +31,35 @@ fun main () {
     val sum = numbers.sum()
     println( "Сумма всех чисел: $sum")
 
-     fun nod (unic: Int , sum: Int ) {
-        return if ( unic == 0 )
-            sum
-        } else  {
-        nod(sum % unic, )
+    tailrec fun recursedNOD(sum : Int, num : Int, smallestNumber : Int) : Int{
+        if (sum % smallestNumber == 0 && num % smallestNumber == 0) {
+            return smallestNumber
+        }
+        return recursedNOD(sum, num, smallestNumber - 1)
+
+
+
     }
+    println("Поиск НОД с рекурсией:")
+    numbers?.forEach { println("Наибольший общий делитель для $sum и $it - ${recursedNOD(sum, it, it)}")}
+
+//*   10 задание   */
+    val map = numbers.map { it to recursedNOD(sum, it, it)}.toMap()
+    println("$map")
+
+//*   11 задание   */
+    map?.forEach { println("Число: ${it.key} Сумма: $sum НОД: ${it.value} ")}
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
